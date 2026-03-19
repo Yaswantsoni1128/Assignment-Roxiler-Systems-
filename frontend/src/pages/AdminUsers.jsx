@@ -18,10 +18,10 @@ const AdminUsers = () => {
       if (tab === 'users') {
         const params = { search, sortBy, sortOrder };
         if (roleFilter) params.role = roleFilter;
-        const res = await axios.get('http://localhost:5000/api/admin/users', { params });
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/admin/users`, { params });
         setUsers(res.data);
       } else {
-        const res = await axios.get('http://localhost:5000/api/admin/stores', {
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/admin/stores`, {
           params: { search, sortBy, sortOrder }
         });
         setStores(res.data);
@@ -41,7 +41,7 @@ const AdminUsers = () => {
   const handleCreateUser = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/admin/users', newUser);
+      await axios.post(`${import.meta.env.VITE_API_URL}/admin/users`, newUser);
       alert('User created successfully');
       setNewUser({ name: '', email: '', password: '', address: '', role: 'NORMAL_USER' });
       fetchData();
@@ -53,7 +53,7 @@ const AdminUsers = () => {
   const handleCreateStore = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/admin/stores', newStore);
+      await axios.post(`${import.meta.env.VITE_API_URL}/admin/stores`, newStore);
       alert('Store created successfully');
       setNewStore({ name: '', email: '', address: '', ownerId: '' });
       fetchData();

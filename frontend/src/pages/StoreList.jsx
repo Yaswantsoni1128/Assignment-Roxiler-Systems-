@@ -12,7 +12,7 @@ const StoreList = () => {
 
   const fetchStores = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/stores', {
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/stores`, {
         params: { search, sortBy, sortOrder }
       });
       setStores(res.data);
@@ -33,7 +33,7 @@ const StoreList = () => {
     const rating = parseInt(ratingInput[storeId]);
     if (!rating || rating < 1 || rating > 5) return alert('Rating must be between 1 and 5');
     try {
-      await axios.post('http://localhost:5000/api/ratings', { storeId, rating });
+      await axios.post(`${import.meta.env.VITE_API_URL}/ratings`, { storeId, rating });
       fetchStores(); // refresh list to show updated ratings
       alert('Rating submitted successfully!');
     } catch (err) {

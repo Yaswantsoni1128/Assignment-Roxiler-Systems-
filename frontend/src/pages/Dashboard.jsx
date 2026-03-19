@@ -12,7 +12,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchAdminStats = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/admin/dashboard');
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/admin/dashboard`);
         setStats(res.data);
       } catch (err) {
         console.error('Failed to fetch admin stats', err);
@@ -23,7 +23,7 @@ const Dashboard = () => {
 
     const fetchStoreOwnerStats = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/stores/dashboard');
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/stores/dashboard`);
         setStoreData(res.data);
       } catch (err) {
         console.error('Failed to fetch store dashboard', err);
